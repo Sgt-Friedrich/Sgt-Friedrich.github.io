@@ -1,3 +1,4 @@
+const ASSET_VERSION='20260715-6';
 const sectionIds=['home','education','internship','projects','awards'];
 let lang;
 try{lang=localStorage.getItem('portfolio-language')}catch(e){}
@@ -6,7 +7,7 @@ lang=lang||(navigator.language.toLowerCase().startsWith('zh')?'zh':'en');
 async function loadSite(){
   const stage=document.getElementById('stage');
   const sections=await Promise.all(sectionIds.map(async id=>{
-    const response=await fetch(`sections/${id}.html`);
+    const response=await fetch(`sections/${id}.html?v=${ASSET_VERSION}`,{cache:'no-store'});
     if(!response.ok)throw new Error(`Failed to load ${id}: ${response.status}`);
     return response.text();
   }));
@@ -152,6 +153,7 @@ function initSite(){
   window.addEventListener('wheel',event=>{
     if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 
+    /* A single mouse-wheel notch moves one project. At the ends, it moves to the adjacent major chapter. */
     if(major===3&&window.innerWidth>600){
       handleProjectWheel(event);
       return;
