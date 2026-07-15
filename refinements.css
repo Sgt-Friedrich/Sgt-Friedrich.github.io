@@ -1,0 +1,68 @@
+/* 2026-07-15 interaction and contrast refinement */
+:root{
+  --red:#d79a72;
+  --accent-block:#d79a72;
+  --accent-deep:#5b281d;
+  --accent-light:#f0c4a8;
+}
+
+/* Stable layered project transitions */
+.subpanels{display:grid;position:relative;overflow:hidden;contain:layout paint}
+.subpanel{
+  grid-area:1/1;
+  position:relative!important;
+  inset:auto!important;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:none;
+  clip-path:inset(0);
+  background:var(--panel-bg,var(--paper));
+  transition:clip-path .46s var(--ease),opacity .12s linear;
+  will-change:clip-path,opacity;
+}
+.subpanel.active{opacity:1;visibility:visible;pointer-events:auto;clip-path:inset(0);z-index:2}
+.subpanel.active.prepare-right{opacity:1;clip-path:inset(0 0 0 100%)}
+.subpanel.active.prepare-left{opacity:1;clip-path:inset(0 100% 0 0)}
+.subpanel.active.leave-left,.subpanel.active.leave-right{opacity:1;clip-path:inset(0);pointer-events:none;z-index:1}
+.subpanel.enter-right,.subpanel.enter-left{animation:none!important}
+
+/* Higher-contrast internship field */
+#internship{background:#d79a72;color:#171512;--panel-bg:#d79a72}
+#internship .chapter-label,#internship .sub-kicker,#internship .fact b,#internship .metric strong,#internship .pipeline b{color:#4f2118}
+#internship .chapter-title,#internship .lead,#internship .fact span,#internship .subnav button{color:#171512}
+#internship .internship-panel .stack{color:#3b2b24}
+#internship .pipeline,#internship .pipeline div,#internship .internship-panel .facts,#internship .internship-panel .fact{border-color:rgba(23,21,18,.78)}
+#internship .subnav{border-color:#171512}
+#internship .subnav button{border-color:rgba(23,21,18,.72);opacity:.84}
+#internship .subnav button.active{background:#171512;color:#fbf8f1;box-shadow:inset 0 -6px 0 #f4c9ae}
+#internship .subnav button.active i{color:#fbf8f1}
+#internship .metric{border-color:rgba(23,21,18,.78)}
+
+/* Distinct chapter wipes */
+.wipe .wipe-block{animation-duration:.94s!important;animation-timing-function:var(--ease)!important;animation-fill-mode:both!important;will-change:transform,clip-path,opacity}
+
+.wipe.to-home .wipe-a{inset:0 50% 0 0;width:auto;background:var(--accent-block);animation-name:home-left!important}
+.wipe.to-home .wipe-b{inset:0 0 0 50%;width:auto;background:var(--ink);animation-name:home-right!important}
+@keyframes home-left{0%{transform:translateX(-110%)}46%,58%{transform:none}100%{transform:translateX(110%)}}
+@keyframes home-right{0%{transform:translateX(110%)}46%,58%{transform:none}100%{transform:translateX(-110%)}}
+
+.wipe.to-education .wipe-a{inset:-18% -12%;width:auto;background:var(--accent-block);clip-path:polygon(0 0,58% 0,100% 100%,42% 100%);animation-name:education-diagonal!important}
+.wipe.to-education .wipe-b{inset:-18% auto -18% 43%;width:15%;background:var(--ink);transform:skewX(-18deg);animation-name:education-rib!important}
+@keyframes education-diagonal{0%{transform:translateX(-120%)}45%,58%{transform:none}100%{transform:translateX(120%)}}
+@keyframes education-rib{0%{transform:translateX(-420%) skewX(-18deg)}45%,58%{transform:skewX(-18deg)}100%{transform:translateX(420%) skewX(-18deg)}}
+
+.wipe.to-internship .wipe-a{inset:0;width:auto;background:#d79a72;transform-origin:bottom;animation-name:internship-rise!important}
+.wipe.to-internship .wipe-b{left:0;right:0;top:auto;bottom:0;width:auto;height:17%;background:var(--ink);animation-name:internship-band!important}
+@keyframes internship-rise{0%{transform:scaleY(0)}46%,60%{transform:scaleY(1)}100%{transform:translateY(-105%)}}
+@keyframes internship-band{0%{transform:translateY(120%)}46%,60%{transform:none}100%{transform:translateY(-650%)}}
+
+.wipe.to-projects .wipe-a{left:50%;top:50%;bottom:auto;width:165vmax;height:165vmax;border-radius:50%;background:var(--ink);animation-name:projects-iris!important}
+.wipe.to-projects .wipe-b{left:50%;top:50%;bottom:auto;width:88vmax;height:88vmax;border:8vmax solid var(--accent-block);border-radius:50%;background:transparent;animation-name:projects-ring!important}
+@keyframes projects-iris{0%{transform:translate(-50%,-50%) scale(0)}48%,61%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0)}}
+@keyframes projects-ring{0%{transform:translate(-50%,-50%) scale(0);opacity:0}30%{opacity:1}48%,61%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(1.5);opacity:0}}
+
+.wipe.to-awards .wipe-a{inset:0;width:auto;background:repeating-linear-gradient(90deg,var(--accent-block) 0 18%,var(--paper2) 18% 20%);animation-name:awards-columns!important}
+.wipe.to-awards .wipe-b{left:0;right:0;top:42%;bottom:auto;width:auto;height:16%;background:var(--ink);animation-name:awards-bar!important}
+@keyframes awards-columns{0%{clip-path:inset(0 100% 0 0)}46%,60%{clip-path:inset(0)}100%{clip-path:inset(0 0 0 100%)}}
+@keyframes awards-bar{0%{transform:scaleX(0)}46%,60%{transform:scaleX(1)}100%{transform:scaleX(0)}}
