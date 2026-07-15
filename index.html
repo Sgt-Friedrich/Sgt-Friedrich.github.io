@@ -1,112 +1,35 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#d3261f">
-  <meta name="description" content="曾逸帆 — RFIC、AI for EDA、Post-training、Agent Systems。">
-  <title>曾逸帆 — Engineering Index</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23eee9dc'/%3E%3Cpath d='M0 64V18L64 0v46z' fill='%23d3261f'/%3E%3Cpath d='M13 17h37v8H22v7h22v8H22v17h-9z' fill='%23111'/%3E%3C/svg%3E">
-  <style>
-    :root{--paper:#eee9dc;--paper2:#f8f5ec;--ink:#111;--red:#d3261f;--line:#bdb6a7;--muted:#6e695f;--pad:clamp(18px,3.2vw,54px);--max:1500px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Arial Narrow","Helvetica Neue","Noto Sans CJK SC","Microsoft YaHei","PingFang SC",Arial,sans-serif;text-rendering:geometricPrecision}a{color:inherit;text-decoration:none}::selection{background:var(--red);color:#fff}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Noto Sans Mono CJK SC",monospace}.keep{white-space:nowrap;word-break:keep-all}.token{display:inline-block;white-space:nowrap;word-break:keep-all}.skip{position:fixed;left:8px;top:8px;z-index:100;padding:10px 14px;background:var(--ink);color:#fff;transform:translateY(-150%)}.skip:focus{transform:none}
-    header{position:sticky;top:0;z-index:50;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);background:var(--ink);color:var(--paper2);border-bottom:4px solid var(--red);font:900 11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em}header nav{display:flex;gap:clamp(12px,2.4vw,36px)}header nav a{position:relative}header nav a:after{content:"";position:absolute;left:0;bottom:-8px;width:100%;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:.18s}header nav a:hover:after,header nav a:focus-visible:after{transform:scaleX(1)}.lang{min-width:54px;padding:8px 10px;border:1px solid currentColor;background:transparent;color:inherit;font:inherit;cursor:pointer}.lang:hover{background:var(--red);border-color:var(--red)}
-    .hero{position:relative;min-height:calc(100svh - 58px);padding:clamp(62px,9vh,126px) var(--pad) 110px;overflow:hidden;border-bottom:1px solid var(--ink);isolation:isolate}.hero-grid{position:absolute;inset:0;z-index:-4;background-image:linear-gradient(to right,rgba(17,17,17,.11) 1px,transparent 1px),linear-gradient(to bottom,rgba(17,17,17,.11) 1px,transparent 1px);background-size:clamp(52px,7vw,110px) clamp(52px,7vw,110px);mask-image:linear-gradient(#000 70%,transparent)}.hero:before{content:"";position:absolute;z-index:-3;width:68vw;height:15vw;min-height:90px;top:31%;right:-13vw;background:var(--red);transform:rotate(-14deg)}.hero:after{content:"";position:absolute;z-index:-2;width:20vw;min-width:180px;aspect-ratio:1;right:8vw;top:14vh;border:clamp(18px,2.6vw,42px) solid var(--ink);border-radius:50%}.kicker,.alias,.role,.meta{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:900}.kicker{margin:0 0 28px;font-size:clamp(10px,1vw,14px);letter-spacing:.13em}.alias{margin:0 0 clamp(28px,4vh,52px);font-size:clamp(10px,1.1vw,15px);letter-spacing:.1em}.hero h1{margin:0;width:min-content;font-size:clamp(68px,14.2vw,236px);line-height:.72;letter-spacing:-.075em;font-weight:950}.hero h1 span{display:block}.hero h1 span:last-child{margin-left:clamp(18px,6vw,98px)}.role{margin:clamp(36px,6vh,74px) 0 0;max-width:940px;font-size:clamp(16px,2vw,31px);line-height:1.05;letter-spacing:.045em}.meta{position:absolute;left:var(--pad);bottom:34px;display:flex;flex-wrap:wrap;gap:9px 26px;font-size:10px;letter-spacing:.06em}.hero-link{position:absolute;right:var(--pad);bottom:26px;font:900 12px/1 ui-monospace,monospace}.hero-link b{color:var(--red);font-size:28px;margin-left:16px}
-    .fields{display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper2);border-bottom:1px solid var(--ink)}.fields div{min-height:94px;padding:24px var(--pad);display:flex;align-items:flex-end;gap:12px;border-right:1px solid var(--ink);font-size:clamp(13px,1.4vw,20px);font-weight:950}.fields div:last-child{border-right:0}.fields span{color:var(--red);font:900 10px/1 ui-monospace,monospace}
-    .shell{max-width:var(--max);margin:auto;padding:clamp(80px,10vw,150px) var(--pad)}.heading{display:grid;grid-template-columns:1fr 3fr;align-items:end;gap:30px;margin-bottom:clamp(50px,7vw,104px)}.heading p{margin:0 0 8px;font:900 10px/1 ui-monospace,monospace;letter-spacing:.12em}.heading h2{margin:0;font-size:clamp(65px,11.5vw,178px);line-height:.72;letter-spacing:-.075em;font-weight:950}
-    .profile-grid{display:grid;grid-template-columns:1fr 2fr 1.25fr;border-top:4px solid var(--ink);border-bottom:1px solid var(--ink)}.profile-grid article{min-width:0;min-height:238px;padding:clamp(25px,3.4vw,50px);border-right:1px solid var(--ink)}.profile-grid article:last-child{border-right:0}.label{margin:0 0 36px;color:var(--red);font:900 10px/1 ui-monospace,monospace;letter-spacing:.11em}.profile-grid h3{margin:0;font-size:clamp(30px,3.7vw,62px);line-height:.94;letter-spacing:-.05em;font-weight:950}.sub{margin:16px 0 0;font:900 10px/1.6 ui-monospace,monospace;letter-spacing:.07em}.research{margin:0;font-size:clamp(25px,3vw,47px);line-height:1.05;letter-spacing:-.04em;font-weight:950}.tags{margin:30px 0 0;color:var(--muted);font:900 10px/1.65 ui-monospace,monospace}.education{border-bottom:4px solid var(--ink)}.edu{display:grid;grid-template-columns:150px minmax(0,1fr) 90px;gap:clamp(20px,4vw,56px);align-items:start;padding:30px 0;border-bottom:1px solid var(--ink)}.edu:last-child{border-bottom:0}.date,.degree,.code{font:900 10px/1.4 ui-monospace,monospace;letter-spacing:.07em}.date{color:var(--red);padding-top:7px}.degree{margin:0 0 8px;color:var(--muted)}.edu h3{margin:0;font-size:clamp(25px,3vw,46px);line-height:.98;letter-spacing:-.04em;font-weight:950}.edu .school{margin:13px 0 0;font-weight:850}.code{justify-self:end;padding-top:7px}
-    .experience{position:relative}.experience:before{content:"";position:absolute;left:0;right:0;top:0;height:12px;background:repeating-linear-gradient(135deg,var(--ink) 0 18px,transparent 18px 34px)}.record{display:grid;grid-template-columns:145px minmax(0,1fr) 110px;gap:clamp(22px,4vw,60px);align-items:start;padding:clamp(32px,5vw,68px) 0;border-top:4px solid var(--ink);border-bottom:1px solid var(--ink)}.record+.record{border-top:0}.record .date,.company,.stack,.mark{font:900 10px/1.55 ui-monospace,monospace;letter-spacing:.06em}.company{margin:0 0 18px;color:var(--red)}.record h3{margin:0;font-size:clamp(34px,4.7vw,72px);line-height:.9;letter-spacing:-.055em;font-weight:950}.function{margin:22px 0 0;font-size:clamp(17px,2vw,29px);line-height:1.08;font-weight:900}.stack{margin:23px 0 0;color:var(--muted)}.mark{justify-self:end;font-size:clamp(38px,5vw,76px);color:var(--red)}
-    .work{background:var(--ink);color:var(--paper2);max-width:none}.work-inner{max-width:var(--max);margin:auto;padding:clamp(80px,10vw,150px) var(--pad)}.work .heading p{color:var(--red)}.projects{border-top:1px solid var(--paper2)}.project{display:grid;grid-template-columns:86px minmax(0,1fr) minmax(220px,.55fr);gap:clamp(18px,3.2vw,50px);align-items:center;padding:clamp(28px,4.2vw,58px) 0;border-bottom:1px solid #5a5750;transition:.18s}.project:hover{padding-left:14px;background:linear-gradient(90deg,rgba(211,38,31,.17),transparent 64%)}.num{color:var(--red);font:950 clamp(30px,4vw,62px)/1 ui-monospace,monospace}.project h3{margin:0;font-size:clamp(25px,3.3vw,52px);line-height:.94;letter-spacing:-.045em;font-weight:950;overflow-wrap:anywhere}.project p{margin:12px 0 0;font-size:clamp(14px,1.3vw,19px);font-weight:850}.project .stack{margin:0;font-size:9px;line-height:1.65}.project .metric{color:var(--red)}
-    .index-table{border-top:4px solid var(--ink);font:800 10px/1.35 ui-monospace,monospace}.idx{display:grid;grid-template-columns:54px minmax(200px,1.15fr) minmax(170px,.8fr) minmax(260px,1.4fr);gap:18px;align-items:center;min-height:64px;padding:12px 0;border-bottom:1px solid var(--ink)}.idx:hover{background:var(--red);color:#fff;padding-left:10px;padding-right:10px}.idx strong{font-size:12px;overflow-wrap:anywhere}.idx.muted{color:var(--muted)}
-    .contact{position:relative;min-height:72vh;padding:clamp(76px,10vw,150px) var(--pad);overflow:hidden;background:var(--red);color:#fff}.contact>p,.contact-links,.foot{font:900 10px/1.4 ui-monospace,monospace;letter-spacing:.1em}.contact h2{margin:clamp(48px,6vw,86px) 0 0;font-size:clamp(76px,15vw,230px);line-height:.67;letter-spacing:-.08em;font-weight:950}.contact-links{position:absolute;right:var(--pad);top:clamp(78px,10vw,150px);display:flex;gap:28px}.contact-links a{padding-bottom:6px;border-bottom:2px solid currentColor}.foot{position:absolute;bottom:28px;left:var(--pad)}
-    .reveal{opacity:0;transform:translateY(24px)}.reveal.visible{opacity:1;transform:none;transition:opacity .48s ease,transform .48s ease}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
-    @media(max-width:1050px){header nav a:nth-child(2),header nav a:nth-child(4){display:none}.profile-grid{grid-template-columns:1fr 1.55fr}.school-block{grid-column:1/-1;border-top:1px solid var(--ink)}.profile-grid article:nth-child(2){border-right:0}.edu{grid-template-columns:120px minmax(0,1fr) 70px}.project{grid-template-columns:70px minmax(0,1fr)}.project>.stack{grid-column:2}.idx{grid-template-columns:44px minmax(170px,1fr) minmax(150px,.8fr)}.idx>:last-child{grid-column:2/-1;color:var(--muted)}}
-    @media(max-width:720px){header{padding:0 16px}.wordmark{font-size:10px}header nav{gap:14px}.hero{padding-left:18px;padding-right:18px}.hero:after{right:-70px;top:22vh}.hero h1{font-size:clamp(58px,22vw,118px)}.role{font-size:17px;max-width:88%}.hero-link{display:none}.fields{grid-template-columns:1fr 1fr}.fields div{min-height:76px;padding:18px;border-bottom:1px solid var(--ink)}.fields div:nth-child(2){border-right:0}.shell,.work-inner{padding-left:18px;padding-right:18px}.heading{grid-template-columns:1fr;margin-bottom:48px}.heading h2{font-size:clamp(62px,23vw,118px)}.profile-grid{display:block}.profile-grid article{min-height:0;border-right:0;border-bottom:1px solid var(--ink)}.profile-grid article:last-child{border-bottom:0}.profile-grid h3{font-size:clamp(30px,10vw,46px)}.research{font-size:clamp(25px,8.4vw,40px)}.edu{grid-template-columns:1fr;gap:10px}.code{display:none}.edu h3{font-size:clamp(25px,8vw,39px)}.record{grid-template-columns:1fr;gap:15px}.record h3{font-size:clamp(38px,12vw,62px)}.mark{position:absolute;right:18px}.project{grid-template-columns:46px minmax(0,1fr);gap:14px}.project h3{font-size:clamp(23px,7.5vw,38px)}.idx{grid-template-columns:34px minmax(0,1fr);gap:8px;padding:15px 0}.idx>:nth-child(3),.idx>:last-child{grid-column:2}.contact-links{position:static;margin-top:40px;flex-wrap:wrap}.contact h2{font-size:clamp(76px,25vw,128px)}.keep{white-space:nowrap}.school-block h3{font-size:clamp(28px,8.7vw,42px)}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#d5251f">
+<meta name="description" content="曾逸帆 — RFIC、AI for EDA、Post-training 与 Agent Systems。">
+<title>曾逸帆 — Silicon to Intelligence</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23eee9dc'/%3E%3Cpath d='M0 64V18L64 0v46z' fill='%23d5251f'/%3E%3Ccircle cx='41' cy='22' r='12' fill='none' stroke='%23111' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip" href="#work" data-zh="跳至项目" data-en="Skip to work">跳至项目</a>
-<header>
-  <a class="wordmark" href="#top">ZYF—026</a>
-  <nav><a href="#profile" data-zh="档案" data-en="PROFILE">档案</a><a href="#experience" data-zh="经历" data-en="EXPERIENCE">经历</a><a href="#work" data-zh="项目" data-en="WORK">项目</a><a href="#index" data-zh="索引" data-en="INDEX">索引</a><a href="#contact" data-zh="联系" data-en="CONTACT">联系</a></nav>
-  <button class="lang" id="lang" aria-label="Switch to English">EN</button>
+<a class="skip" href="#education" data-zh="跳至教育经历" data-en="Skip to education">跳至教育经历</a>
+<header class="site-header">
+<a class="brand" href="#home" data-major="0">ZYF—026 / SILICON→INTELLIGENCE</a>
+<nav class="primary-nav" aria-label="Primary">
+<button data-major="1" data-zh="教育" data-en="EDUCATION">教育</button>
+<button data-major="2" data-zh="实习" data-en="INTERNSHIP">实习</button>
+<button data-major="3" data-zh="项目" data-en="PROJECTS">项目</button>
+<button data-major="4" data-zh="奖项" data-en="AWARDS">奖项</button>
+</nav>
+<button class="lang" id="lang" aria-label="Switch language">EN</button>
 </header>
-<main id="top">
-  <section class="hero">
-    <div class="hero-grid"></div>
-    <p class="kicker" data-zh="个人主页 / 2026 / 工程" data-en="PORTFOLIO / 2026 / ENGINEERING">个人主页 / 2026 / 工程</p>
-    <p class="alias">曾逸帆 / YIFAN ZENG / SGT. FRIEDRICH</p>
-    <h1><span>BUILD</span><span>SYSTEMS</span></h1>
-    <p class="role">RFIC / AI FOR EDA / POST—TRAINING / AGENT SYSTEMS</p>
-    <div class="meta"><span>UESTC</span><span>CHENGDU</span><span>2021—2028</span><span>REV / 07.2026</span></div>
-    <a class="hero-link" href="#profile"><span data-zh="工程档案" data-en="ENGINEERING FILE">工程档案</span><b>↘</b></a>
-  </section>
-  <section class="fields"><div><span>01</span>RFIC</div><div><span>02</span>AI FOR EDA</div><div><span>03</span>POST—TRAINING</div><div><span>04</span>AGENT SYSTEMS</div></section>
-
-  <section class="shell" id="profile">
-    <div class="heading"><p data-zh="档案 / 00" data-en="PROFILE / 00">档案 / 00</p><h2 data-zh="研究" data-en="RESEARCH">研究</h2></div>
-    <div class="profile-grid">
-      <article><p class="label" data-zh="姓名" data-en="IDENTITY">姓名</p><h3 class="keep">曾逸帆</h3><p class="sub">YIFAN ZENG<br>SGT. FRIEDRICH</p></article>
-      <article><p class="label" data-zh="研究方向" data-en="RESEARCH">研究方向</p><p class="research"><span class="token" data-zh="20–40 GHz 宽带 RFIC" data-en="20–40 GHz Wideband RFIC">20–40 GHz 宽带 RFIC</span> / <span class="token" data-zh="AI 辅助 EDA" data-en="AI-assisted EDA">AI 辅助 EDA</span> / <span class="token" data-zh="大模型后训练" data-en="LLM Post-training">大模型后训练</span> / <span class="token" data-zh="智能体系统" data-en="Agent Systems">智能体系统</span></p><p class="tags">GAAS PHEMT / ADS / EM / SFT / QLORA / GRPO / MCP / RAG</p></article>
-      <article class="school-block"><p class="label" data-zh="学校" data-en="UNIVERSITY">学校</p><h3 class="keep" data-zh="电子科技大学" data-en="UESTC">电子科技大学</h3><p class="sub" data-zh="UESTC / 成都" data-en="UNIVERSITY OF ELECTRONIC SCIENCE AND TECHNOLOGY OF CHINA / CHENGDU">UESTC / 成都</p></article>
-    </div>
-    <div class="education">
-      <div class="edu"><div class="date">2021—2025</div><div><p class="degree" data-zh="本科 / 工学学士" data-en="B.ENG. / UNDERGRADUATE">本科 / 工学学士</p><h3 class="keep" data-zh="微电子科学与工程" data-en="Microelectronics Science and Engineering">微电子科学与工程</h3><p class="school keep" data-zh="电子科技大学" data-en="UESTC">电子科技大学</p></div><div class="code">EDU—01</div></div>
-      <div class="edu"><div class="date">2025—2028</div><div><p class="degree" data-zh="硕士 / 在读" data-en="M.ENG. CANDIDATE">硕士 / 在读</p><h3 class="keep" data-zh="信息与通信工程" data-en="Information and Communication Engineering">信息与通信工程</h3><p class="school keep" data-zh="电子科技大学" data-en="UESTC">电子科技大学</p></div><div class="code">EDU—02</div></div>
-    </div>
-  </section>
-
-  <section class="shell experience" id="experience">
-    <div class="heading"><p data-zh="经历 / 01" data-en="EXPERIENCE / 01">经历 / 01</p><h2 data-zh="实务" data-en="FIELDWORK">实务</h2></div>
-    <div class="record"><div class="date" data-zh="2026—至今" data-en="2026—CURRENT">2026—至今</div><div><p class="company">安恒信息 / ANHENG INFORMATION</p><h3 class="keep" data-zh="AI 安全工程实习" data-en="AI SECURITY ENGINEERING INTERN">AI 安全工程实习</h3><p class="function"><span class="token" data-zh="XDR 研判" data-en="XDR Investigation">XDR 研判</span> / <span class="token" data-zh="OSIM 校验" data-en="OSIM Validation">OSIM 校验</span> / <span class="token" data-zh="规则修复" data-en="Rule Repair">规则修复</span> / <span class="token" data-zh="回归测试" data-en="Regression">回归测试</span></p><p class="stack">DASCLAW / MCPCAN / SKILL / MCP / AGENTIC RAG / THREAT INTELLIGENCE / STRUCTURED REPORTS</p></div><div class="mark">A—01</div></div>
-    <div class="record"><div class="date" data-zh="研究方向" data-en="RESEARCH">研究方向</div><div><p class="company">LLM / AGENT</p><h3 class="keep" data-zh="大模型后训练" data-en="LLM POST—TRAINING">大模型后训练</h3><p class="function"><span class="token">SFT</span> / <span class="token">QLoRA</span> / <span class="token">DPO</span> / <span class="token">GRPO</span> / <span class="token">Agentic RL</span></p><p class="stack">REWARD DESIGN / KL STABILITY / RUNTIME GUARD / OFFLINE EVALUATION / OPENRLHF</p></div><div class="mark">PT—02</div></div>
-  </section>
-
-  <section class="work" id="work"><div class="work-inner">
-    <div class="heading"><p data-zh="精选 / 08" data-en="SELECTED / 08">精选 / 08</p><h2 data-zh="系统" data-en="SYSTEMS">系统</h2></div>
-    <div class="projects">
-      <div class="project"><div class="num">01</div><div><h3>PG—COUPLER—SAM</h3><p data-zh="30 GHz 分支线耦合器自动综合" data-en="30 GHz branch-line coupler synthesis">30 GHz 分支线耦合器自动综合</p></div><p class="stack">ADS MOMENTUM / COMPLEX S-MATRIX / PHYSICS-GUIDED SURROGATE / INVERSE DESIGN</p></div>
-      <a class="project" href="https://github.com/Sgt-Friedrich/rf-eda-lna-agent" target="_blank" rel="noreferrer"><div class="num">02</div><div><h3>RF—EDA—LNA—AGENT</h3><p data-zh="证据门控 RF 设计工作流" data-en="Evidence-gated RF design workflow">证据门控 RF 设计工作流</p></div><p class="stack">CODEX SKILL / EXPLORATION TREE / RF SANITY GATES / EM / SIGNOFF READINESS</p></a>
-      <a class="project" href="https://github.com/Sgt-Friedrich/Agent_City" target="_blank" rel="noreferrer"><div class="num">03</div><div><h3>AGENT—CITY</h3><p data-zh="静态拓扑 / 运行轨迹 / 故障回放" data-en="Static topology / runtime trace / failure replay">静态拓扑 / 运行轨迹 / 故障回放</p></div><p class="stack">TAURI / NEXT.JS / FASTAPI / REACT THREE FIBER / MULTI-LANGUAGE PARSER</p></a>
-      <a class="project" href="https://study-hub.cn/" target="_blank" rel="noreferrer"><div class="num">04</div><div><h3>STUDYHUB—AGENT</h3><p data-zh="证据约束推荐 / 自动填充 / 知识库" data-en="Evidence-grounded recommendation / autofill / knowledge base">证据约束推荐 / 自动填充 / 知识库</p><p class="metric">SCHEMA 36→100 / MODE 73→98.1 / OOB ~13→~2</p></div><p class="stack">QWEN3—8B / RAG / QLORA / GRPO / RUNTIME GUARD / BM25 / RERANK</p></a>
-      <div class="project"><div class="num">05</div><div><h3>XDR—INVESTIGATION</h3><p data-zh="只读威胁研判编排" data-en="Read-only threat investigation orchestration">只读威胁研判编排</p></div><p class="stack">SKILL / MCP / IOC / HUMAN CONFIRMATION / STRUCTURED REPORTS / 36—SCENARIO VALIDATION</p></div>
-      <div class="project"><div class="num">06</div><div><h3>MYFLOW—GO—BACKEND</h3><p data-zh="智能体运行时 / 工作流后端" data-en="Agent runtime / workflow backend">智能体运行时 / 工作流后端</p></div><p class="stack">GO / AGENTS / FLOWS / SKILLS / MCP / MEMORY / SCHEDULING</p></div>
-      <div class="project"><div class="num">07</div><div><h3>LION—LNA—REDESIGN</h3><p data-zh="20–40 GHz GaAs LNA 探索" data-en="20–40 GHz GaAs LNA exploration">20–40 GHz GaAs LNA 探索</p></div><p class="stack">GAAS PHEMT / ADS / MOMENTUM / MCLINE / PRELAYOUT / EVIDENCE TREE</p></div>
-      <div class="project"><div class="num">08</div><div><h3>MATERIAL—MANAGEMENT</h3><p data-zh="库存 / 配方 / 生产闭环" data-en="Inventory / formula / production loop">库存 / 配方 / 生产闭环</p></div><p class="stack">SPRING BOOT / VUE 3 / MYSQL / REDIS / RBAC / DOCKER COMPOSE</p></div>
-    </div>
-  </div></section>
-
-  <section class="shell" id="index">
-    <div class="heading"><p data-zh="仓库 / 18" data-en="REPOSITORY / 18">仓库 / 18</p><h2 data-zh="索引" data-en="INDEX">索引</h2></div>
-    <div class="index-table">
-      <a class="idx" href="https://github.com/Sgt-Friedrich/Agent_City" target="_blank" rel="noreferrer"><span>01</span><strong>AGENT—CITY</strong><span data-zh="智能体架构可视化" data-en="Agent architecture visualization">智能体架构可视化</span><span>TAURI / NEXT.JS / FASTAPI / R3F</span></a>
-      <div class="idx"><span>02</span><strong>PG—COUPLER—SAM</strong><span data-zh="耦合器自动综合" data-en="Coupler synthesis">耦合器自动综合</span><span>ADS / MOMENTUM / SURROGATE / OPTIMIZATION</span></div>
-      <a class="idx" href="https://github.com/Sgt-Friedrich/rf-eda-lna-agent" target="_blank" rel="noreferrer"><span>03</span><strong>RF—EDA—LNA—AGENT</strong><span data-zh="RF EDA 工作流" data-en="RF EDA workflow">RF EDA 工作流</span><span>CODEX SKILL / EVIDENCE GATES / EM</span></a>
-      <div class="idx"><span>04</span><strong>XDR—INVESTIGATION</strong><span data-zh="威胁研判" data-en="Threat investigation">威胁研判</span><span>SKILL / MCP / RAG / IOC</span></div>
-      <div class="idx"><span>05</span><strong>MYFLOW—GO—BACKEND</strong><span data-zh="智能体运行时" data-en="Agent runtime">智能体运行时</span><span>GO / FLOWS / SKILLS / MEMORY</span></div>
-      <div class="idx"><span>06</span><strong>LION—LNA—REDESIGN</strong><span data-zh="宽带 LNA" data-en="Wideband LNA">宽带 LNA</span><span>ADS / GAAS / PRELAYOUT / EM</span></div>
-      <div class="idx"><span>07</span><strong>LION—VGA—EXPLORATION</strong><span data-zh="多状态 VGA" data-en="Multi-state VGA">多状态 VGA</span><span>ADS / OPTIMIZER / LARGE-SIGNAL / GATES</span></div>
-      <div class="idx"><span>08</span><strong>MATERIAL—MANAGEMENT</strong><span data-zh="库存与生产" data-en="Inventory and production">库存与生产</span><span>SPRING BOOT / VUE / MYSQL / DOCKER</span></div>
-      <a class="idx" href="https://github.com/Sgt-Friedrich/local-latex-workbench" target="_blank" rel="noreferrer"><span>09</span><strong>LOCAL—LATEX—WORKBENCH</strong><span data-zh="本地论文写作" data-en="Local authoring">本地论文写作</span><span>VSCODE / XELATEX / PDF.JS / SYNCTEX</span></a>
-      <a class="idx" href="https://github.com/Sgt-Friedrich/balance-float" target="_blank" rel="noreferrer"><span>10</span><strong>BALANCE—FLOAT</strong><span data-zh="云资源悬浮窗" data-en="Cloud resource overlay">云资源悬浮窗</span><span>ELECTRON / SAFESTORAGE / MULTI-CLOUD</span></a>
-      <div class="idx"><span>11</span><strong>CODEX—WECHAT—BRIDGE</strong><span data-zh="飞书 ↔ CODEX" data-en="FEISHU ↔ CODEX">飞书 ↔ CODEX</span><span>TYPESCRIPT / WEBSOCKET / SQLITE / TRACE</span></div>
-      <a class="idx" href="https://github.com/Sgt-Friedrich/codex-sub2api-lite" target="_blank" rel="noreferrer"><span>12</span><strong>CODEX—SUB2API—LITE</strong><span data-zh="本地 Responses 代理" data-en="Local Responses proxy">本地 Responses 代理</span><span>GO STDLIB / ROTATION / STREAMING / SYSTEMD</span></a>
-      <div class="idx"><span>13</span><strong>OSIM—CHECK</strong><span data-zh="规则校验 / 修复 / 回归" data-en="Rule validation / repair / regression">规则校验 / 修复 / 回归</span><span>SKILLS / REPLAY / ORCHESTRATION / GATES</span></div>
-      <div class="idx"><span>14</span><strong>INTERVIEW—QA—CV</strong><span data-zh="作品页 / 面试手册" data-en="Portfolio / interview handbook">作品页 / 面试手册</span><span>VITE / RAG / SFT / QLORA / GRPO</span></div>
-      <a class="idx" href="https://github.com/Sgt-Friedrich/ysyx_DEF" target="_blank" rel="noreferrer"><span>15</span><strong>YSYX—DEF</strong><span data-zh="答辩工作区" data-en="Defense workspace">答辩工作区</span><span>ENV CHECK / DEMOS / EVIDENCE</span></a>
-      <div class="idx"><span>16</span><strong>YSYX—FAN</strong><span data-zh="体系结构学习" data-en="Computer architecture study">体系结构学习</span><span>COMPUTER ARCHITECTURE / SYSTEMS</span></div>
-      <div class="idx muted"><span>17</span><strong>PRIVATE—DEPLOYMENT</strong><span data-zh="基础设施备份" data-en="Infrastructure backup">基础设施备份</span><span>NGINX / ALMALINUX / NETWORK SERVICES</span></div>
-      <div class="idx muted"><span>18</span><strong>REFERENCE—MIRROR</strong><span data-zh="代码库研究" data-en="Codebase study">代码库研究</span><span>TYPESCRIPT / BUN / REACT INK / MCP</span></div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact"><p data-zh="联系 / 开源 / 协作" data-en="CONTACT / OPEN SOURCE / COLLABORATION">联系 / 开源 / 协作</p><h2 data-zh-html="构建<br>验证<br>迭代" data-en-html="BUILD<br>VERIFY<br>ITERATE">构建<br>验证<br>迭代</h2><div class="contact-links"><a href="https://github.com/Sgt-Friedrich" target="_blank" rel="noreferrer">GITHUB ↗</a><a href="mailto:yifanzeng@std.uestc.edu.cn">EMAIL ↗</a></div><div class="foot">ZYF—026 / RFIC—AI—SYSTEMS</div></section>
-</main>
-<script>
-  const btn=document.getElementById('lang');let lang;try{lang=localStorage.getItem('portfolio-language')}catch(e){}lang=lang||(navigator.language.toLowerCase().startsWith('zh')?'zh':'en');
-  function setLang(next){lang=next;document.documentElement.lang=lang==='zh'?'zh-CN':'en';document.title=lang==='zh'?'曾逸帆 — Engineering Index':'Yifan Zeng — Engineering Index';document.querySelectorAll('[data-zh]').forEach(el=>{el.textContent=el.dataset[lang]});document.querySelectorAll('[data-zh-html]').forEach(el=>{el.innerHTML=el.dataset[lang+'Html']});btn.textContent=lang==='zh'?'EN':'中文';btn.setAttribute('aria-label',lang==='zh'?'Switch to English':'切换到中文');try{localStorage.setItem('portfolio-language',lang)}catch(e){}}
-  btn.addEventListener('click',()=>setLang(lang==='zh'?'en':'zh'));setLang(lang);
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){const els=document.querySelectorAll('.profile-grid article,.edu,.record,.project,.idx');els.forEach(e=>e.classList.add('reveal'));const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});els.forEach(e=>io.observe(e))}
-</script>
+<div class="major-nav" aria-label="Chapter navigation">
+<button class="major-dot active" data-major="0"><span>00 / HOME</span></button>
+<button class="major-dot" data-major="1"><span>01 / EDUCATION</span></button>
+<button class="major-dot" data-major="2"><span>02 / INTERNSHIP</span></button>
+<button class="major-dot" data-major="3"><span>03 / PROJECTS</span></button>
+<button class="major-dot" data-major="4"><span>04 / AWARDS</span></button>
+</div>
+<div class="wipe" aria-hidden="true"><div class="wipe-block wipe-a"></div><div class="wipe-block wipe-b"></div></div>
+<main class="stage" id="stage"><div class="boot">LOADING / 026</div></main>
+<script src="app.js"></script>
 </body>
 </html>
