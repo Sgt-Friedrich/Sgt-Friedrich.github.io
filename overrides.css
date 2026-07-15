@@ -1,9 +1,179 @@
-.boot{position:absolute;inset:0;display:grid;place-items:center;background:var(--paper);color:var(--ink);font:900 11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em}
+:root{
+  --paper:#f2eee5;
+  --paper2:#fbf8f1;
+  --ink:#171512;
+  --red:#c8794f;
+  --accent-block:#c8794f;
+  --accent-deep:#7d3825;
+  --accent-light:#efb995;
+  --ash:#5c574f;
+  --line:#a89f92;
+}
+
+.boot{position:absolute;inset:0;display:grid;place-items:center;background:var(--paper);color:var(--ink);font:900 13px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em}
+
+/* Readability */
+.site-header{font-size:12px;border-bottom-color:var(--accent-block)}
+.brand{font-size:12px}
+.primary-nav button,.lang{min-height:40px}
+.primary-nav button:after{height:3px;background:var(--accent-block);transition:transform .18s ease}
+.primary-nav button:hover{opacity:.78}
+.lang{min-width:48px}
+.lang:hover{background:var(--accent-block);border-color:var(--accent-block);color:var(--ink)}
+.chapter-label{font-size:12px;color:var(--accent-deep)}
+.dark .chapter-label{color:var(--accent-light)}
+.section-note{font-size:clamp(18px,1.9vw,29px);line-height:1.2}
+.chapter-title{font-size:clamp(70px,10.5vw,160px)}
+.bottom-gate{font-size:11px;line-height:1.35;pointer-events:none}
+.bottom-gate>span:first-child{display:none}
+.gate-line{margin-left:0;opacity:.58}
+.gate-arrow{color:var(--accent-deep);font-size:25px;animation:gate-pulse 1.8s ease-in-out infinite}
+.dark .gate-arrow{color:var(--accent-light)}
+@keyframes gate-pulse{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(5px);opacity:1}}
+
+/* Shape-only major navigation */
+.major-nav{gap:8px}
+.major-dot{width:10px;height:24px;border-radius:0;background:rgba(95,88,80,.34);transition:height .22s ease,background .22s ease,transform .22s ease}
+.major-dot:hover{transform:scaleX(1.45);background:rgba(95,88,80,.62)}
+.major-dot.active{height:64px;background:var(--accent-block)}
+.major-dot span{display:none!important}
+.wipe-a{background:var(--accent-block)}
+
+/* Submodule rail: content labels remain, affordance comes from shape and response */
+.subsystem{position:relative}
+.subnav{border-top-width:5px;scroll-snap-type:x proximity}
+.subnav button{position:relative;scroll-snap-align:start;min-width:clamp(172px,17vw,270px);height:76px;padding:0 20px;font-size:11.5px;line-height:1.32;letter-spacing:.05em;opacity:.72;transition:background .18s ease,color .18s ease,opacity .18s ease,transform .18s ease,box-shadow .18s ease}
+.subnav button:before{content:"";position:absolute;left:0;right:0;top:0;height:0;background:var(--accent-block);transition:height .18s ease}
+.subnav button span{font-size:11px;color:var(--accent-deep);margin-bottom:8px}
+.dark .subnav button span{color:var(--accent-light)}
+.subnav button:hover{opacity:1;transform:translateY(-2px);background:rgba(23,21,18,.055)}
+.dark .subnav button:hover{background:rgba(250,247,239,.07)}
+.subnav button:hover:before{height:3px}
+.subnav button.active{opacity:1;background:var(--ink);color:var(--paper2);box-shadow:inset 0 -6px 0 var(--accent-block)}
+.subnav button.active:before{height:5px}
+#projects .subnav button.active{background:var(--paper2);color:var(--ink);box-shadow:inset 0 -6px 0 var(--accent-block)}
+#projects .subnav button.active span{color:var(--accent-deep)}
 .subpanels{min-height:0}
 .subpanel.active{position:relative;inset:auto}
-.subnav button.active{background:var(--ink);color:var(--paper2)}
-#projects .subnav button.active{background:var(--paper2);color:var(--ink)}
+.sub-kicker{font-size:11px;line-height:1.3;color:var(--accent-deep)}
+.dark .sub-kicker{color:var(--accent-light)}
+.subpanel h3{font-size:clamp(38px,5vw,76px);text-wrap:balance;line-break:strict}
+.subpanel .lead{font-size:clamp(18px,1.85vw,28px);line-height:1.24;font-weight:760}
+.fact{grid-template-columns:108px 1fr;gap:20px;padding:17px 0;font-size:clamp(15px,1.2vw,18px);line-height:1.45;font-weight:680}
+.fact b{font-size:11px;line-height:1.4;color:var(--accent-deep)}
+.dark .fact b{color:var(--accent-light)}
+.stack{font-size:11px;line-height:1.72;color:#504b44}
+.dark .stack{color:#c2baaf}
+.metric{padding:11px 13px;font-size:11px;line-height:1.2}
+.metric strong{color:var(--accent-deep)}
+.dark .metric strong{color:var(--accent-light)}
+
+/* Hero */
+.hero-name{font-size:12px}
+.hero-title span:nth-child(2){color:var(--accent-deep)}
+.hero-sub{font-size:clamp(16px,1.8vw,27px);line-height:1.24}
+.signal-arrow{background:var(--accent-block);opacity:.9}
+.freq{font-size:11px}
+.signal-chain div{font-size:clamp(12px,1.2vw,17px)}
+.signal-chain b{font-size:11px;color:var(--accent-deep)}
+
+/* Education */
+.edu-block .year,.education-data b{color:var(--accent-deep)}
+.edu-block p{font-size:clamp(15px,1.2vw,19px);line-height:1.4}
+.education-data div{font-size:12px;line-height:1.55}
+.education-data b{font-size:23px}
+
+/* Muted orange field with dark foreground for contrast */
+#internship{background:var(--accent-block);color:var(--ink);--panel-bg:var(--accent-block)}
+#internship .chapter-label,#internship .sub-kicker,#internship .fact b,#internship .metric strong{color:#5c281c}
+#internship .chapter-code{color:var(--ink)}
+#internship .pipeline{border-color:var(--ink)}
+#internship .pipeline div{border-color:var(--ink);font-size:11.5px;color:var(--ink)}
+#internship .pipeline div:not(:last-child):after{background:var(--accent-block);color:var(--ink)}
+#internship .pipeline b{color:#5c281c;font-size:11px}
+#internship .internship-panel .facts,#internship .internship-panel .fact{border-color:rgba(23,21,18,.62)}
+#internship .internship-panel .stack{color:#352720}
+#internship .subnav button:hover{background:rgba(23,21,18,.075)}
+#internship .subnav button.active{background:var(--ink);color:var(--paper2);box-shadow:inset 0 -6px 0 #f1c3a7}
+#internship .subnav button.active span{color:#f1c3a7}
+
+/* Project wheel indicator: shapes only */
+#projects .project-graph i{border-color:var(--accent-light)}
+.project-scroll-guide{--progress:16.666%;display:grid;grid-template-columns:30px minmax(90px,180px) auto;align-items:center;gap:14px;margin:clamp(22px,3vh,34px) 0 10px;color:var(--accent-light)}
+.project-scroll-guide>span:first-child{display:none}
+.wheel-shape{position:relative;width:25px;height:38px;border:2px solid currentColor;border-radius:16px}
+.wheel-shape:after{content:"";position:absolute;left:50%;top:7px;width:3px;height:8px;background:currentColor;border-radius:3px;transform:translateX(-50%);animation:wheel-dot 1.45s ease-in-out infinite}
+@keyframes wheel-dot{0%,100%{transform:translate(-50%,0);opacity:.45}50%{transform:translate(-50%,9px);opacity:1}}
+.progress-rail{position:relative;height:3px;background:rgba(239,185,149,.28);overflow:hidden}
+.progress-rail b{position:absolute;inset:0 auto 0 0;width:var(--progress);background:currentColor;transition:width .32s var(--ease)}
+.project-progress{font:900 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;color:var(--paper2)}
+#projects .subsystem{margin-top:0}
+#projects .subnav{cursor:ns-resize}
+#projects .subnav button{cursor:ns-resize;flex:1 1 0;min-width:148px}
+
+/* Awards */
+.podium:nth-child(2){background:var(--accent-block);color:var(--ink)}
+.podium small,.award-placeholder{font-size:11.5px}
+
 html[lang="en"] .keep{white-space:normal}
-.bottom-gate>span:first-child{max-width:75%;line-height:1.35}
-@media(max-width:900px){.subpanels{min-height:0}.subpanel{padding-bottom:76px}}
-@media(max-width:600px){.bottom-gate{font-size:7px}.bottom-gate>span:first-child{max-width:72%}.chapter-inner{padding-bottom:110px}}
+
+/* Fit-to-viewport behavior for desktop and short laptop screens */
+.chapter.fit-height .chapter-scroll{overflow-y:hidden}
+.chapter.fit-height .chapter-inner{height:100%;min-height:100%}
+.chapter.compact-height .chapter-inner{padding-top:clamp(22px,3.5vh,42px);padding-bottom:72px}
+.chapter.compact-height .chapter-label{margin-bottom:clamp(16px,2.5vh,28px)}
+.chapter.compact-height .chapter-title{font-size:clamp(58px,8.8vw,128px)}
+.chapter.compact-height .section-note{margin-top:20px;font-size:clamp(17px,1.55vw,23px)}
+.chapter.compact-height .subsystem{margin-top:clamp(20px,3vh,38px)}
+.chapter.compact-height .subnav button{height:62px}
+.chapter.compact-height .subpanel{padding-top:22px;padding-bottom:18px}
+.chapter.compact-height .subpanel h3{font-size:clamp(34px,4.3vw,64px)}
+.chapter.compact-height .subpanel .lead{margin-top:17px;font-size:clamp(17px,1.55vw,23px)}
+.chapter.compact-height .fact{padding:12px 0;font-size:clamp(14px,1.05vw,16px)}
+.chapter.compact-height .stack{margin-top:16px}
+.chapter.compact-height .education-map{margin-top:clamp(22px,3.2vh,42px)}
+.chapter.compact-height .edu-block{min-height:clamp(150px,22vh,230px);padding:clamp(20px,2.5vw,36px)}
+.chapter.compact-height .education-data{margin-top:clamp(26px,4vh,48px)}
+.chapter.compact-height .pipeline{margin-top:clamp(18px,2.8vh,30px)}
+.chapter.compact-height .project-scroll-guide{margin:16px 0 8px}
+
+@media(min-width:901px) and (max-height:820px){
+  .chapter-inner{padding-top:32px;padding-bottom:72px}
+  .chapter-title{font-size:clamp(62px,8.7vw,128px)}
+  .chapter-label{margin-bottom:22px}
+  .subsystem{margin-top:28px}
+  .subnav button{height:64px}
+  .subpanel{padding-top:22px;padding-bottom:18px}
+  .subpanel h3{font-size:clamp(34px,4.4vw,64px)}
+  .subpanel .lead{margin-top:16px;font-size:clamp(17px,1.55vw,23px)}
+  .fact{padding:12px 0;font-size:clamp(14px,1.05vw,16px)}
+  .stack{margin-top:16px}
+  .project-scroll-guide{margin:15px 0 8px}
+  .education-map{margin-top:30px}
+  .edu-block{min-height:190px;padding:28px}
+  .education-data{margin-top:42px}
+  .pipeline{margin-top:22px}
+}
+
+@media(max-width:1050px){#projects .subnav button{flex:0 0 184px}}
+@media(max-width:900px){
+  .subpanels{min-height:0}
+  .subpanel{padding-bottom:76px}
+  .site-header{font-size:11px}
+  .brand{font-size:11px}
+  .subnav button{min-width:176px}
+  .project-scroll-guide{grid-template-columns:24px minmax(80px,1fr) auto;margin-top:20px}
+  .wheel-shape{width:22px;height:34px}
+  .chapter.fit-height .chapter-scroll{overflow-y:auto}
+}
+@media(max-width:600px){
+  .chapter-inner{padding-bottom:96px}
+  .chapter-label{font-size:11px}
+  .subnav button{height:68px;font-size:10.5px;min-width:164px}
+  .sub-kicker,.fact b,.stack{font-size:10.5px}
+  .fact{grid-template-columns:86px 1fr;font-size:15px}
+  .hero-name{font-size:11px}
+  .section-note{font-size:18px}
+  .project-scroll-guide{grid-template-columns:22px minmax(65px,1fr) auto;gap:10px}
+  .project-progress{font-size:11px}
+}
