@@ -1,0 +1,9 @@
+.boot{position:absolute;inset:0;display:grid;place-items:center;background:var(--paper);color:var(--ink);font:900 11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em}
+.subpanels{min-height:0}
+.subpanel.active{position:relative;inset:auto}
+.subnav button.active{background:var(--ink);color:var(--paper2)}
+#projects .subnav button.active{background:var(--paper2);color:var(--ink)}
+html[lang="en"] .keep{white-space:normal}
+.bottom-gate>span:first-child{max-width:75%;line-height:1.35}
+@media(max-width:900px){.subpanels{min-height:0}.subpanel{padding-bottom:76px}}
+@media(max-width:600px){.bottom-gate{font-size:7px}.bottom-gate>span:first-child{max-width:72%}.chapter-inner{padding-bottom:110px}}
