@@ -1,0 +1,22 @@
+/* Solid, element-derived chapter transitions. */
+.hero-to i{display:inline-block;font-style:normal}
+.to-o{position:relative;transform-origin:center}
+.wipe{display:none!important}
+.element-transition-layer{position:fixed;inset:0;z-index:8000;overflow:hidden;pointer-events:none;isolation:isolate}
+.element-transition-surface{position:absolute;inset:0;will-change:clip-path;backface-visibility:hidden}
+.element-transition-seed{position:fixed;z-index:2;box-sizing:border-box;pointer-events:none;transform-origin:center;will-change:transform}
+.transition-source-hidden{visibility:hidden!important}
+body.is-major-transition{cursor:progress}
+body.is-major-transition .site-header,body.is-major-transition .major-nav{visibility:hidden}
+
+/* Submodule panels use one solid reveal layer; no opacity cross-fade. */
+.subpanels{display:grid!important;position:relative!important;overflow:hidden!important;contain:layout paint}
+.subpanel{grid-area:1/1!important;position:relative!important;inset:auto!important;opacity:1!important;visibility:hidden!important;pointer-events:none!important;transform:none!important;transition:none!important;z-index:1!important;will-change:clip-path,transform}
+.subpanel.active{visibility:visible!important;pointer-events:auto!important;z-index:2!important}
+.subpanel.subpanel-incoming{visibility:visible!important;pointer-events:none!important;z-index:3!important}
+.subpanel.enter-right,.subpanel.enter-left,.subpanel.prepare-right,.subpanel.prepare-left,.subpanel.leave-left,.subpanel.leave-right{animation:none!important;transition:none!important}
+
+@media(prefers-reduced-motion:reduce){
+  .element-transition-layer{display:none!important}
+  .transition-source-hidden{visibility:visible!important}
+}
